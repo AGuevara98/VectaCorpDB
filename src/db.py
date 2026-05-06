@@ -84,6 +84,20 @@ def add_role(role): # needs an object that represents all of the information of 
         cursor.execute(sql_query, (role.role,)) # representa al objeto employee
         conn.commit()
 
+def get_role_from_roleid(roleid): ### argumento role tipo string
+    query = ''' SELECT role from roles WHERE roleid=?'''
+    with closing(conn.cursor()) as cursor:
+        cursor.execute(query, (roleid,))
+        results = cursor.fetchone()
+    return results['role']
+
+def get_roleid_from_role(role): ### argumento role tipo string
+    query = ''' SELECT roleid from roles WHERE role=?'''
+    with closing(conn.cursor()) as cursor:
+        cursor.execute(query, (role,))
+        results = cursor.fetchone()
+    return results['roleid']
+
 # solutions
 def add_solution(solution): # needs an object that represents all of the information of the solutio
     sql_query = '''INSERT OR IGNORE INTO solutions (solution)
