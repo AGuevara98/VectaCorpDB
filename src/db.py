@@ -68,6 +68,16 @@ def delete_employee(employeeid):
         cursor.execute(sql_query, (employeeid,))
         conn.commit()
 
+def update_employee(employee): # needs an array that represents all of the information of the employee
+    sql_query = '''UPDATE employees 
+    SET name=?, username=?, password=?, email=?, roleid=?
+    WHERE employeeid=?'''
+    with closing(conn.cursor()) as cursor:
+        cursor.execute(sql_query, (employee.name, employee.username,
+                                   employee.password, employee.email,
+                                   employee.roleid, employee.employeeid)) # representa al objeto employee
+        conn.commit()
+
 def get_employeeid_from_role(role): ### argumento role tipo string
     query = ''' SELECT roleid from roles WHERE role=?'''
     with closing(conn.cursor()) as cursor:
