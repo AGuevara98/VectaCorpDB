@@ -17,7 +17,7 @@ conn = None
 def connect():
     global conn
     if not conn: # if conn has not been set then set
-        conn =sql.connect("../db/helpdesk.sqlite")
+        conn = sql.connect("../db/helpdesk.sqlite", check_same_thread=False)
         conn.row_factory = sql.Row # returns a dict instead of a tuple
         
 def close():
